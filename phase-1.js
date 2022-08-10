@@ -1,17 +1,57 @@
+// ------------creating promise-----------
 function stretch() {
-  // Your code here
+  return new Promise((resolve, reject)=>{
+    // do the settimeout requirements.
+    setTimeout(()=>{
+      console.log("done stretching");
+      resolve();
+    }, 1000);
+  })
 }
 
 function runOnTreadmill() {
-  // Your code here
+  return new Promise((resolve, reject)=>{
+    // do the settimeout requirements.
+    setTimeout(()=>{
+      console.log("done running on treadmill");
+      resolve();
+    }, 500);
+  })
 }
 
 function liftWeights() {
-  // Your code here
+  return new Promise((resolve, reject)=>{
+    // do the settimeout requirements.
+    setTimeout(()=>{
+      console.log("done lifting weights");
+      resolve();
+    }, 2000);
+  })
 }
 
+// ------------consuming the promise-----------
+function workoutHell() {
+  setTimeout(()=>{
+    console.log("done stretching");
+    setTimeout(()=>{
+      console.log("done running on treadmill");
+      setTimeout(()=>{
+        console.log("done lifting weights");
+        console.log("done working out");
+      }, 2000)
+    }, 500)
+  }, 1000)
+}
+
+
 function workout() {
-  // Your code here
+  // const promiseObj = stretch();
+
+  stretch()
+    .then((data)=>runOnTreadmill(data))
+    .then(liftWeights)
+    .then(()=>console.log("done working out"))
+    .catch((error)=>console.log(error))
 }
 
 
